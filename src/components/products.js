@@ -8,21 +8,30 @@ const api = axios.create({
 });
 
 class products extends Component {
+    _isMounted = false;
+
     state = {
         products: [],
     };
-    constructor() {
-        super();
-        api.get("/").then((res) => {
-            this.setState({ products: res.data });
-        });
+
+    componentDidMount() {
+        this._isMounted = true;
+
+        if (this._isMounted) {
+            api.get("/").then((res) => {
+                this.setState({ products: res.data });
+            });
+        }
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     render() {
         return (
             <div>
                 <Container>
-                    <h3 class="text-info">Electronics</h3>
+                    <h3 className="text-info">Electronics</h3>
                     <Row>
                         {this.state.products.map((x) => {
                             if (x.category === "electronics") {
@@ -39,7 +48,7 @@ class products extends Component {
                             return null;
                         })}
                     </Row>
-                    <h3 class="text-info">Jewelery</h3>
+                    <h3 className="text-info">Jewelery</h3>
                     <Row>
                         {this.state.products.map((x) => {
                             if (x.category === "jewelery") {
@@ -53,9 +62,10 @@ class products extends Component {
                                     />
                                 );
                             }
+                            return null;
                         })}
                     </Row>
-                    <h3 class="text-info">Men clothing</h3>
+                    <h3 className="text-info">Men clothing</h3>
                     <Row>
                         {this.state.products.map((x) => {
                             if (x.category === "men clothing") {
@@ -69,9 +79,10 @@ class products extends Component {
                                     />
                                 );
                             }
+                            return null;
                         })}
                     </Row>
-                    <h3 class="text-info">Women clothing</h3>
+                    <h3 className="text-info">Women clothing</h3>
                     <Row>
                         {this.state.products.map((x) => {
                             if (x.category === "women clothing") {
@@ -85,6 +96,7 @@ class products extends Component {
                                     />
                                 );
                             }
+                            return null;
                         })}
                     </Row>
                 </Container>

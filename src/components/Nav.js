@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     Navbar,
     Nav,
@@ -11,7 +11,14 @@ import {
     NavDropdown,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-function nav() {
+import { useSelector, useDispatch } from "react-redux";
+import * as actionCreator from "../store/actions/actionCreators";
+const Navx = () => {
+    const dispatch = useDispatch();
+    const counter = useSelector((state) => state.add.value);
+    useEffect(() => {
+        dispatch(actionCreator.fetchProduct());
+    }, [dispatch]);
     return (
         <>
             <header>
@@ -20,11 +27,10 @@ function nav() {
                     variant="dark"
                     className="justify-content-between"
                 >
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand>
                         <Link to={"/"}>MyShop</Link>
                     </Navbar.Brand>
                     <Container fluid>
-                        {" "}
                         <Row className="ml-3"></Row>
                         <Nav className="ml-3">
                             <Nav.Link href="/">Home</Nav.Link>
@@ -62,15 +68,17 @@ function nav() {
                         <Row className="mr-4">
                             <Col>
                                 <Link
-                                    to={"/product/cart"}
+                                    to={"/cart"}
                                     className="fas fa-shopping-cart"
-                                ></Link>
+                                >
+                                    {counter}
+                                </Link>
                             </Col>
 
                             <Col>
-                                <a href="#">
+                                <Link to="#">
                                     <i className="fas fa-user"></i>
-                                </a>
+                                </Link>
                             </Col>
                         </Row>
                     </Container>
@@ -78,6 +86,6 @@ function nav() {
             </header>
         </>
     );
-}
+};
 
-export default nav;
+export default Navx;

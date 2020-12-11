@@ -11,8 +11,11 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Review from "./Review";
+import { useDispatch } from "react-redux";
 
 function ProductCard(props) {
+    const dispatch = useDispatch();
+
     return (
         <div>
             <Col className="ml-3">
@@ -75,7 +78,12 @@ function ProductCard(props) {
                                 </Row>
                             </ListGroupItem>
                             <ListGroupItem>
-                                <Button className="btn-block" type="button">
+                                <Button
+                                    onClick={() =>
+                                        dispatch({ type: "ADD", id: props.id })
+                                    }
+                                    className="btn-block"
+                                >
                                     Add to Cart
                                 </Button>
                             </ListGroupItem>

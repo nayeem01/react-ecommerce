@@ -30,6 +30,7 @@ function ProductDetail({ match }) {
                 description={data.description}
                 price={data.price}
                 cat={data.category}
+                id={data.id}
             />
         </div>
     );

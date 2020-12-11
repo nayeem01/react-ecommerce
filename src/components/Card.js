@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import * as actionType from "../store/actions/actions";
+import { useDispatch } from "react-redux";
+import * as actionCreator from "../store/actions/actionCreators";
 
-function card(props) {
+function Cardx(props) {
+    const dispatch = useDispatch();
+
     return (
         <div>
             <Col>
@@ -24,14 +29,22 @@ function card(props) {
                         <Card.Title></Card.Title>
 
                         <h4>
-                            <span class="badge badge-success mr-3">Price</span>${" "}
-                            {Math.floor(props.price * 81)} BDT
+                            <span className="badge badge-success mr-3">
+                                Price
+                            </span>
+                            $ {Math.floor(props.price * 81)} BDT
                         </h4>
                         <Link to={`/product/${props.id}`}>
                             <Button variant="primary">View</Button>
                         </Link>
 
-                        <Button className="ml-3" variant="info">
+                        <Button
+                            onClick={() =>
+                                dispatch({ type: actionType.add, id: props.id })
+                            }
+                            className="ml-3"
+                            variant="info"
+                        >
                             add to chart
                         </Button>
                     </Card.Body>
@@ -41,4 +54,4 @@ function card(props) {
     );
 }
 
-export default card;
+export default Cardx;
