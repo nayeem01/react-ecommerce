@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as actionType from "../store/actions/actions";
 import { useDispatch } from "react-redux";
-import * as actionCreator from "../store/actions/actionCreators";
 
 function Cardx(props) {
     const dispatch = useDispatch();

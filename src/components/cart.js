@@ -1,8 +1,10 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import findQuantity from "../customHandler/findQuantity";
 import * as actionCreator from "../store/actions/actionCreators";
+import * as actionType from "../store/actions/actions";
 import { Col, Table, Button, Row, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import PriceCount from "../customHandler/PriceCount";
 function Cart() {
     const dispatch = useDispatch();
@@ -15,14 +17,21 @@ function Cart() {
     productList.map((id, i) => {
         result = result.concat(info.filter((x) => x.id == productList[i]));
     });
-    let qtyUpdate;
-    useMemo(() => {
-        dispatch(actionCreator.cart(result));
-        dispatch(actionCreator.qty(qt));
+    let qtyUpdate, cartList;
+
+    useEffect(() => {
+        dispatch(actionCreator.cart(result, qt));
+        dispatch({
+            type: actionType.update,
+            list: productList,
+        });
+
+        // dispatch(actionCreator.qty(qt));
     }, [qtyUpdate]);
     // let total = ;
-    let cartList = useSelector((state) => state.data.cart);
+    cartList = useSelector((state) => state.data.cart);
     qtyUpdate = useSelector((state) => state.data.qty);
+    // console.log(qtyUpdate.reduce((x, y) => x + y, 0));
 
     return (
         <div>
@@ -40,19 +49,44 @@ function Cart() {
                 </thead>
                 <tbody>
                     {cartList.map((x, i) => (
-                        <tr>
+                        <tr key={x.id}>
                             <td>{x.id}</td>
-                            <td>{x.title}</td>
+
+                            <td>
+                                <img src={x.image} width="50" height="40" />{" "}
+                                {x.title}
+                            </td>
                             <td>{x.price * 81} BDT</td>
-                            <td>{qt[i]}</td>
+                            <td>{qtyUpdate[i]}</td>
                             <Button
                                 variant="primary"
                                 onClick={() => {
                                     dispatch(
-                                        actionCreator.cart(
-                                            cartList.filter((y) => y.id != x.id)
+                                        actionCreator.qtyUp(i, [...qtyUpdate])
+                                    );
+                                    dispatch({
+                                        type: actionType.removeUpdate,
+                                        value: 1,
+                                    });
+                                }}
+                                className="far fa-minus-square btn-sm"
+                            ></Button>
+                            <Button
+                                variant="primary"
+                                onClick={() => {
+                                    dispatch(
+                                        actionCreator.cartUp(
+                                            cartList,
+                                            x.id,
+                                            qtyUpdate,
+                                            i
                                         )
                                     );
+                                    dispatch({
+                                        type: actionType.remove,
+                                        value: qtyUpdate[i],
+                                        id: x.id,
+                                    });
                                 }}
                                 className="fas fa-trash-alt ml-3 btn-sm"
                             ></Button>
@@ -67,6 +101,17 @@ function Cart() {
                     </Col>
                     <Col xs={{ offset: 6 }}>
                         <h4>= {PriceCount()}</h4>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Link
+                            xs={{ span: 6, offset: 3 }}
+                            to="/"
+                            className="btn btn-primary btn-lg"
+                        >
+                            Continue Shopping
+                        </Link>
                     </Col>
                 </Row>
             </Container>

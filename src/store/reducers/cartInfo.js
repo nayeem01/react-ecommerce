@@ -12,8 +12,20 @@ function cartInfo(state = initialState, action) {
             return {
                 ...state,
                 cart: action.cart,
+                qty: action.qty,
+            };
+        case actionType.cartUp:
+            return {
+                ...state,
+                cart: action.cart,
+                qty: action.qty,
             };
         case actionType.qty:
+            return {
+                ...state,
+                qty: action.qty,
+            };
+        case actionType.qtyUp:
             return {
                 ...state,
                 qty: action.qty,

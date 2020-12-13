@@ -19,6 +19,7 @@ const Navx = () => {
     useEffect(() => {
         dispatch(actionCreator.fetchProduct());
     }, [dispatch]);
+    //const reducer = (accumulator, currentValue) => accumulator + currentValue;
     return (
         <>
             <header>

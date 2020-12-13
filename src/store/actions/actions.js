@@ -1,6 +1,10 @@
 export const add = "ADD";
+export const update = "UPDATE";
 export const productId = "PRODUCT_ID";
 export const cart = "CART";
 export const qty = "QUANTITY";
+export const qtyUp = "QUANTITY_UPDATE";
+export const cartUp = "QUANTITY_UP";
 export const fetchAll = "FETCH";
 export const remove = "REMOVE";
+export const removeUpdate = "REMOVE_UPDATE";

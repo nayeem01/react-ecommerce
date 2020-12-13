@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import Review from "./Review";
 import { useDispatch } from "react-redux";
-
+import * as actionType from "../store/actions/actions";
 function ProductCard(props) {
     const dispatch = useDispatch();
 
@@ -80,7 +80,10 @@ function ProductCard(props) {
                             <ListGroupItem>
                                 <Button
                                     onClick={() =>
-                                        dispatch({ type: "ADD", id: props.id })
+                                        dispatch({
+                                            type: actionType.add,
+                                            id: props.id,
+                                        })
                                     }
                                     className="btn-block"
                                 >
