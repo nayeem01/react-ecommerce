@@ -28,9 +28,5 @@
 
 -   #### image
 
-    ![Semantic description of image](/asset/ecommerce.png "Ecommerce")
+   (/asset/ecommerce.png "Ecommerce")
 
--   ### Demo Video
-<figure class="video_container">
-  <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6743767632941604864" height="705" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-</figure>
