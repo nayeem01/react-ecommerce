@@ -23,3 +23,14 @@
 
 -   > My first solution was using hooks but it did not work the way i wanted. Beacuse every time i go back to homepage it reredener and cart history was lost.
 -   > My second solution was using redux and redux thunk. It was difficult to implement but it worked accordingly. Now user can continue shopping without losing cart data.
+
+### Project view
+
+-   #### image
+
+    ![Semantic description of image](/asset/ecommerce.png "Ecommerce")
+
+-   ### Demo Video
+<figure class="video_container">
+  <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6743767632941604864" height="705" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+</figure>
