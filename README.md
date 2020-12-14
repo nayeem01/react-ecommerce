@@ -28,5 +28,5 @@
 
 -   #### image
 
-   ![Ecommerce](/public/ecommerce.png)
+   ![Ecommerce](/ecommerce.png)
 
