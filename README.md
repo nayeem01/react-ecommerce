@@ -28,5 +28,5 @@
 
 -   #### image
 
-   (/asset/ecommerce.png "Ecommerce")
+   (/public/ecommerce.png "Ecommerce")
 
