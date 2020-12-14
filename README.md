@@ -28,5 +28,5 @@
 
 -   #### image
 
-   (/public/ecommerce.png "Ecommerce")
+   ![Ecommerce](/public/ecommerce.png)
 
